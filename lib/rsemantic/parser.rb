@@ -9,6 +9,7 @@ module RSemantic
       @filter_stop_words = options[:filter_stop_words]
       @stem_words        = options[:stem_words]
       locale             = options[:locale] || 'en'
+      @locale            = locale
 
       if @filter_stop_words
         File.open("#{File.dirname(__FILE__)}/../../resources/#{locale}.stop", 'r') do |file|
@@ -43,7 +44,9 @@ module RSemantic
       string = clean(string)
       words = string.split(" ")
 
-      if @stem_words
+      if @stem_words && @locale == 'hi'
+        words.map { |word| HindiStemmer::hi_stem(word) }
+      elsif @stem_words
         words.map { |word| Stemmer::stem_word(word) }
       else
         words

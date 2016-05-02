@@ -4,6 +4,7 @@ $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname
 require "rsemantic/vector_space"
 require "rsemantic/compare"
 require "rsemantic/parser"
+require 'rsemantic/hi_stemmer.rb'
 require "rsemantic/matrix_transformer"
 require "rsemantic/search"
 require "rsemantic/transform"
